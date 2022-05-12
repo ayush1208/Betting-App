@@ -49,9 +49,6 @@ app.post("/register",(req,res)=> {
     })
 })
 
-app.post("/home",(req,res)=> {
-    res.send("My Home API")
-})
 
 app.listen(9002,() => {
     console.log("BE started at port 9002")
