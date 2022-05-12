@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "concurrently": "^7.1.0"
+  },
+  "scripts": {
+    "start" : "cd frontend && npm start"
   }
 }
+
