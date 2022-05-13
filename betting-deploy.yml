@@ -1,0 +1,9 @@
+---
+- name: Pull docker image of betting
+  hosts: all
+  tasks:
+    - name: Pull image
+      docker_image:
+        name: sinbycosmay/betting
+        source: pull
+force_source: yes

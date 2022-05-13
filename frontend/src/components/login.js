@@ -1,18 +1,36 @@
 import React,{useState} from "react";
-
+import axios from "axios"
+var username_glob=""
 export default function Login(){
     
     const [user,setUser]=useState({
         username: "",
         password: ""
     })
-
     const handleChange = e => {
         const {name,value} = e.target
         setUser({
             ...user,
             [name]:value
         })
+    }
+
+    const handleLogin = e =>{
+        const {username,password}=user
+        if(username && password){
+            axios.post("http://localhost:9002/login",user).then( res => {
+                if(res.data.message){
+                    alert(res.data.message);
+                }
+                else{
+                    username_glob=user.username
+                    alert("Login Successful");
+                }
+            });
+        }
+        else{
+            alert("Invalid Input")
+        }
     }
 
     return(
@@ -28,7 +46,9 @@ export default function Login(){
                 <input type="password" className="form-control" id="inputPassword2" name="password" value={user.password} placeholder="Password" onChange={handleChange}/>
             </div>
 
-            <button className="btn btn-primary text-center" type="submit">Login</button>
+            <button className="btn btn-primary text-center" type="submit" onClick={handleLogin}>Login</button>
         </div>
     )
 }
+export {username_glob}
+
